@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+<rosparam file="$(find transporter_autodock)/param/charging_dock_controller_params.yaml" command="load"/>
+
+<!--Run the docking controller-->
+<node pkg="transporter_autodock" type="chargingdock_controller_node" name="docking_controller" output="screen">
+<remap from="dock_cmd_vel" to="/mobile_base/commands/velocity"/>
+</node>
+
+
+
+<!--Run the front distance measurement node-->
+<node pkg="transporter_autodock" type="chargingdock_dist_measure_node" name="docking_controller_dist_measure_node"/>
+
+</launch>

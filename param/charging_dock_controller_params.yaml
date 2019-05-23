@@ -1,0 +1,17 @@
+#parameters for the move into dock proportional controller
+#proportional gain
+Kp: 0.3
+#distance away from the dock to stop at (m)
+stop_distance: 0.5
+#speed thresholds in (m/s)
+lower_speed_threshold: 0.03  
+upper_speed_threshold: 0.08
+#stopping tolerance in (m) 
+stop_threshold: 0.05
+
+#far goal pose values
+far_goal_x: 1.432
+far_goal_y: -5.307
+far_goal_z: 0.747
+far_goal_w: 0.665
+

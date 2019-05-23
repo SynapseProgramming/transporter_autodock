@@ -1,0 +1,8 @@
+#goal definition
+bool dock_goal
+---
+#result definition
+string dock_result
+---
+#feedback
+int32 state
