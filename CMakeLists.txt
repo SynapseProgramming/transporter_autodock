@@ -140,6 +140,7 @@ include_directories(
  add_executable(chargingdock_controller_node src/chargingdock_controller.cpp)
  add_executable(chargingdock_controller_client_node src/chargingdock_controller_client.cpp)
  add_executable(chargingdock_stopdist_controller_test_node src/chargingdock_stopdist_controller_test.cpp) 
+ add_executable(chargingdock_controller_client_button_node src/chargingdock_controller_client_button.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -156,6 +157,11 @@ include_directories(
  add_dependencies(chargingdock_controller_client_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
  add_dependencies(chargingdock_stopdist_controller_test_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+ add_dependencies(chargingdock_controller_client_button_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+
+
+
 
 ## Specify libraries to link a library or executable target against
  target_link_libraries(chargingdock_dist_measure_node
@@ -174,6 +180,9 @@ include_directories(
    ${catkin_LIBRARIES}
  )
 
+  target_link_libraries(chargingdock_controller_client_button_node
+   ${catkin_LIBRARIES}
+ )
 
 #############
 ## Install ##
