@@ -35,6 +35,7 @@ void donecb(const actionlib::SimpleClientGoalState &state, const transporter_aut
 std::cout<<"Status:"<<state.toString()<<std::endl;
 //Statements to print upon sucessfully reaching the goal.
 if(state.toString()=="SUCCEEDED"){std::cout<<"The goal has been reached!"<<std::endl;}
+else if(state.toString()=="ABORTED"){std::cout<<"goal aborted! try again!"<<std::endl;}
 else{std::cout<<"Something went wrong! the bot could not reach the near goal!"<<std::endl;}
 going_to_dock=false;
 }//bracket of donecb

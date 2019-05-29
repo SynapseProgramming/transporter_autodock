@@ -73,6 +73,7 @@ void movebase_send_goal(double x, double y, double z,double w){
   //send the goal to move base!
   ac.sendGoal(goal,boost::bind(&move_base_controller::donecb, this, _1, _2),movebAC::SimpleActiveCallback(), movebAC::SimpleFeedbackCallback());
   g_reached=false;
+  aborted=false;
 }//bracket of movebase_send_goal
 
 void donecb(const actionlib::SimpleClientGoalState &state, const move_base_msgs::MoveBaseResultConstPtr &result){
@@ -84,6 +85,9 @@ std::cout<<"The goal has been reached!"<<std::endl;
 //declare goal reached as true.
 g_reached=true;
 }
+else if(state.toString()=="ABORTED"){
+aborted=true;
+}
 else{g_reached=false;
 std::cout<<"Something went wrong! the bot could not reach the near goal!"<<std::endl;
 }
@@ -94,11 +98,15 @@ bool get_goal_state(){
 return g_reached;
 }
 
+bool is_aborted(){
+return aborted;
+}
+
 private:
 //create the action client object,specifying the name of the action server.
 movebAC ac;
 bool g_reached=false;
-
+bool aborted=false;
 };
 
 
@@ -171,8 +179,13 @@ as_.setSucceeded(result_);
 state=0;
 dock_reached=false;
 //we would want to exit the loop here.
-break;
+break;}
+
+else if(state!=0&&move_base.is_aborted()){// do stuff when move base gives up
+state=0;
+as_.setAborted();
 }
+
 
 
 
